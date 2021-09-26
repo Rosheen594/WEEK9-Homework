@@ -1,0 +1,36 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 500,
+  "title": "Marine Litter (2015-2021)",
+  "projection": {"type": "equalEarth"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Rosheen594/W9-Homework/main/Week9%20homework/map/js/custom.geo.topojson.json",
+        "format": {"type": "topojson", "feature": "custom.geo"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Rosheen594/W9-Homework/main/Week9%20homework/map/data/MLW_Data.csv"
+      },
+      "mark": {"type": "circle", "tooltip": {"content": "data"}},
+      "encoding": {
+        "longitude": {"field": "lon_x1","type": "quantitative"},
+        "latitude": {"field": "lat_y1", "type": "quantitative"},
+        "size": {
+          "field": "BeachName",
+          "type": "nominal",
+          "scale": {"domain": [16]}
+        },
+        "color": {
+          "field": "EventDate",
+          "type": "ordinal",
+          "scale": {"scheme": "blues"}
+        }
+      }
+    }
+  ]
+}
